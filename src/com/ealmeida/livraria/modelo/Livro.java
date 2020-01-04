@@ -28,12 +28,21 @@ public class Livro implements Serializable {
 	private String titulo;
 	private String isbn;
 	private double preco;
+	private String genero;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataLancamento = Calendar.getInstance();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<Autor>();
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
 
 	public List<Autor> getAutores() {
 		return autores;

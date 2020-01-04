@@ -6,6 +6,18 @@
 	<artifactId>jsf-livraria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<repositories>
+		<repository>
+			<id>primefaces</id>
+			<url>https://repository.primefaces.org/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -51,6 +63,16 @@
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
 </project>

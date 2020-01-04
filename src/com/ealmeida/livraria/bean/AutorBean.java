@@ -16,6 +16,10 @@ public class AutorBean {
 
 	private Autor autor = new Autor();
 
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+
 	public Autor getAutor() {
 		return autor;
 	}
@@ -35,7 +39,11 @@ public class AutorBean {
 	public ForwardView gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 
-		new DAO<Autor>(Autor.class).adiciona(this.autor);
+		if (this.autor.getId() == null)
+			new DAO<Autor>(Autor.class).adiciona(this.autor);
+		else
+			new DAO<Autor>(Autor.class).atualiza(this.autor);
+
 		this.autor = new Autor();
 
 		return new ForwardView("livro");
