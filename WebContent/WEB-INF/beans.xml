@@ -1,0 +1,5 @@
+<beans>
+    <interceptors>
+        <class>com.ealmeida.livraria.tx.GerenciadorDeTransacao</class>
+    </interceptors>
+</beans>

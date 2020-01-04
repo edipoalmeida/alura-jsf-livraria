@@ -18,7 +18,7 @@
 	<ui:define name="titulo">Novo Livro</ui:define>
 	<ui:define name="conteudo">
 		<p:messages id="messagesLivro" />
-		<h:form>
+		<h:form id="formLivro">
 			<p:fieldset legend="Dados do Livro">
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Titulo:" for="titulo" />
@@ -120,11 +120,15 @@
 				</p:column>
 
 				<p:column headerText="Alterar">
-					<h:commandLink value="altera" action="#{livroBean.carregar(livro)}" />
+					<p:commandButton update=":formLivro" process="@this"
+						value="alterar" actionListener="#{livroBean.alterar(livro)}"
+						icon="fa fa-fw fa-edit" />
 				</p:column>
 
 				<p:column headerText="Remover">
-					<h:commandLink value="remove" action="#{livroBean.remover(livro)}" />
+					<p:commandButton update="@form" process="@this" value="remover"
+						actionListener="#{livroBean.remover(livro)}"
+						icon="fa fa-fw fa-remove" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

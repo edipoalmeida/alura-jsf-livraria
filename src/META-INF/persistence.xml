@@ -12,6 +12,7 @@
 		<class>com.ealmeida.livraria.modelo.Usuario</class>
 		<class>com.ealmeida.livraria.modelo.Livro</class>
 		<class>com.ealmeida.livraria.modelo.Autor</class>
+		<class>com.ealmeida.livraria.modelo.Venda</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"

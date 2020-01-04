@@ -1,21 +1,33 @@
 package com.ealmeida.livraria.bean;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.ealmeida.livraria.dao.UsuarioDao;
 import com.ealmeida.livraria.modelo.Usuario;
 import com.ealmeida.livraria.util.ForwardView;
 
-@SuppressWarnings("deprecation")
-@ManagedBean
-@ViewScoped
-public class LoginBean {
+@Named
+@ViewScoped // javax.faces.view.ViewScoped
+public class LoginBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario = new Usuario();
 
+	@Inject
+	UsuarioDao usuarioDao;
+	
+	@Inject
+	FacesContext context;
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -23,13 +35,11 @@ public class LoginBean {
 	public ForwardView efetuaLogin() {
 		System.out.println("Fazendo login do usuário " + this.usuario.getEmail());
 
-		boolean existe = new UsuarioDao().existe(this.usuario);
-		FacesContext context = FacesContext.getCurrentInstance();
+		boolean existe = usuarioDao.existe(this.usuario);
 		if (existe) {
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
 			return new ForwardView("livro");
 		}
-
 		context.getExternalContext().getFlash().setKeepMessages(true);
 		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
 
@@ -37,8 +47,6 @@ public class LoginBean {
 	}
 
 	public ForwardView deslogar() {
-
-		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");
 		return new ForwardView("login");
 	}
